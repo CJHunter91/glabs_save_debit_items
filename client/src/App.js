@@ -1,19 +1,33 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import AjaxRequest from './services/AjaxRequest'
 import './App.css';
 
 class App extends Component {
+
+  constructor(props){
+    super(props);
+    this.state ={
+      debitItems: []
+    }
+    this.setDebitItems =  this.setDebitItems.bind(this);
+  }
+
+  setDebitItems(data){
+    console.log(data)
+    this.setState({debitItems: data});
+  }
+
+  componentDidMount(){
+    const ajaxRequest = new AjaxRequest('http://localhost:3001/');
+    ajaxRequest.get(this.setDebitItems);
+  }
+
+
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <section className="debit-items">
+      </section>
     );
   }
 }
