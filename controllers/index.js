@@ -1,9 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/', (req, res) =>{
-  res.json({test: "hello"})
-})
-
+router.use(require('./debitItems'))
 
 module.exports = router;
