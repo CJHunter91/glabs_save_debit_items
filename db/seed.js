@@ -2,7 +2,7 @@ use glabs_test;
 
 db.debitItems.drop();
 
-const debitData ={
+const debitData =
   {
     "ReturnedDebitItem": [
     {
@@ -57,3 +57,7 @@ const debitData ={
       }
     }
     ]
+  }
+
+    //insert 
+db.debitItems.insert(debitData);
