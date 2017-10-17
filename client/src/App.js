@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import AjaxRequest from './services/AjaxRequest'
 import './App.css';
 
@@ -22,13 +22,25 @@ class App extends Component {
     ajaxRequest.get(this.setDebitItems);
   }
 
-
+  renderDebitItems(){
+    console.log(this.state.debitItems)
+    if(this.state.debitItems){
+      return this.state.debitItems.map((item, index)=>{
+        return(
+          <li></li>
+          )
+      })
+    }
+  }
 
   render() {
     return (
       <section className="debit-items">
+      <article>
+      {this.renderDebitItems()}
+      </article>
       </section>
-    );
+      );
   }
 }
 
