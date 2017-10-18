@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import AjaxRequest from './services/AjaxRequest'
+import DebitItems from './containers/DebitItems'
 import './App.css';
 
 class App extends Component {
@@ -22,23 +23,13 @@ class App extends Component {
     ajaxRequest.get(this.setDebitItems);
   }
 
-  renderDebitItems(){
-    console.log(this.state.debitItems)
-    if(this.state.debitItems){
-      return this.state.debitItems.map((item, index)=>{
-        return(
-          <li></li>
-          )
-      })
-    }
-  }
-
   render() {
     return (
       <section className="debit-items">
-      <article>
-      {this.renderDebitItems()}
-      </article>
+      <header>
+        <h1 id="title">Returned Debit Items</h1>
+      </header>
+      <DebitItems debitItems={this.state.debitItems} />
       </section>
       );
   }

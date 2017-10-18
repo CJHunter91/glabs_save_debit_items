@@ -1,28 +1,57 @@
-.App {
-  text-align: center;
+html, body{
+  padding: 0px;
+  margin: 0px;
+  background-color: #DFDFDF;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+li{
+  list-style: none;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
+h1, h2, h3, h4, h5, p, li{
+  color: #363636;
+}
+
+.acc-ref{
+  font-size: 2.2vh;
+  font-weight: bold;
+}
+
+#payer-account{
+  margin-left: 30px
+}
+
+#title{
+  background: linear-gradient(to right, #7d9b89 29%, #939c53 100%);
+  margin: 0px;
   padding: 20px;
-  color: white;
+  font-size: 3.0vh;
 }
 
-.App-title {
-  font-size: 1.5em;
+#debit-item-list ul,#payer-account ul {
+  font-size: 2.1vh;
+  padding: 0px 0px 0px 5px;
 }
 
-.App-intro {
-  font-size: large;
+#debit-item{
+  display: flex;
+  border-bottom: solid 10px #7d9b89;
+  padding: 8px;
+  width: 100%;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+#items{
+  width: 600px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 600px){
+
+  #items{
+    width: 100%;
+  }
+
+  #debit-item{
+    flex-direction: column;
+  }
 }

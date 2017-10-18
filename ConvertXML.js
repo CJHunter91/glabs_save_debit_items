@@ -32,12 +32,13 @@ const readSaveXML = (file, moveCallback) => {
   fs.readFile( readFrom + file, function(err, data) {
 
     parser.parseString(data, function (err, result) {
+      console.log(result)
       const debitItems = result.BACSDocument.Data.ARUDD.Advice.OriginatingAccountRecords.OriginatingAccountRecord.ReturnedDebitItem;
       db.collection('BACSDocuments').insert(result);
       db.collection('debitItems').insert(debitItems);
       console.log(`\n ***${file} converted to JSON and successfully saved to db*** \n`);
     });
-
+    moveXML(file);
   });
 
 }
