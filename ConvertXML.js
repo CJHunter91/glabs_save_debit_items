@@ -12,10 +12,10 @@ MongoClient.connect('mongodb://localhost:27017/glabs_test', (err, database) =>{
   db = database;
 })
 
-//add file check to throw error if no files in folder.
-
 fs.readdir( readFrom , function( err, files ) {
-
+  if(files.length <= 0) {
+    console.log("No files to convert")
+    process.exit()};
   files.forEach( (file)=>{
     readSaveXML(file, moveXML);
   })
@@ -26,6 +26,9 @@ const moveXML = (file) =>{
     if (err) throw err;
     console.log(`\n ${file} archived \n`);
   }) 
+  setTimeout(() =>{
+    process.exit()
+  },1000)
 }
 
 const readSaveXML = (file, moveCallback) => {
