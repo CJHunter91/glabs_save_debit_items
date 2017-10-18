@@ -13,11 +13,13 @@ MongoClient.connect('mongodb://localhost:27017/glabs_test', (err, database) =>{
 })
 
 fs.readdir( readFrom , function( err, files ) {
-  if(files.length <= 0) {
+  if(files.length <= 1) {
     console.log("No files to convert")
     process.exit()};
   files.forEach( (file)=>{
+    if(file.split('.').pop() === "xml"){
     readSaveXML(file, moveXML);
+  }
   })
 })
 
@@ -26,6 +28,7 @@ const moveXML = (file) =>{
     if (err) throw err;
     console.log(`\n ${file} archived \n`);
   }) 
+  //forces exit to console
   setTimeout(() =>{
     process.exit()
   },1000)
@@ -35,7 +38,6 @@ const readSaveXML = (file, moveCallback) => {
   fs.readFile( readFrom + file, function(err, data) {
 
     parser.parseString(data, function (err, result) {
-      console.log(result)
       const debitItems = result.BACSDocument.Data.ARUDD.Advice.OriginatingAccountRecords.OriginatingAccountRecord.ReturnedDebitItem;
       db.collection('BACSDocuments').insert(result);
       db.collection('debitItems').insert(debitItems);
